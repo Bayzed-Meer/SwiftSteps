@@ -24,7 +24,7 @@ export class ProductsCreateComponent {
   createForm() {
     this.productForm = this.fb.group({
       productName: '',
-      productShortCode: '',
+      shortCode: '',
       category: '',
       price: '',
       description: '',

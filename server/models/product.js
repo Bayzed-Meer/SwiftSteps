@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
     type: String, 
     required: true,
   },
-  productShortCode: { 
+  shortCode: { 
     type: String, 
     required: true, 
   },

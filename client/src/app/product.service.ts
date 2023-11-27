@@ -13,8 +13,13 @@ export class ProductService {
   createProduct(productData: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/products`, productData);
   }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
+  }
+
+  deleteProduct(shortCode: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/product/${shortCode}`);
   }
 }
 

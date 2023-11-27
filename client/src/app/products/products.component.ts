@@ -23,6 +23,10 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.refreshTable();
+  }
+
+  refreshTable() {
     this.productService.getProducts().subscribe((products) => {
       this.dataSource.data = products;
     });
@@ -33,6 +37,23 @@ export class ProductsComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    console.log('Delete product:', product);
+    const shortCodeToDelete = product.shortCode;
+
+    this.productService.deleteProduct(shortCodeToDelete).subscribe({
+      next: () => {
+        console.log('Product deleted successfully:', product);
+        const index = this.dataSource.data.findIndex(
+          (p) => p.shortCode === shortCodeToDelete
+        );
+
+        if (index !== -1) {
+          this.dataSource.data.splice(index, 1);
+          this.dataSource._updateChangeSubscription();
+        }
+      },
+      error: (error) => {
+        console.error('Error deleting product', error);
+      },
+    });
   }
 }
