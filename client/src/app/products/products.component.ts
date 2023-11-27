@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Product, ProductService } from '../product.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   displayedColumns: string[] = [
     'productName',
     'shortCode',
@@ -18,20 +19,13 @@ export class ProductsComponent {
     'actions',
   ];
   dataSource = new MatTableDataSource<Product>();
-  products: Product[] = [
-    {
-      productName: 'Running Shoes',
-      shortCode: 'RS001',
-      category: 'Footwear',
-      price: 49.99,
-      origin: 'USA',
-      imageUrl: 'https://example.com/shoes.jpg',
-      createdDate: new Date('2023-01-01'),
-    },
-  ];
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.dataSource.data = this.products;
+    this.productService.getProducts().subscribe((products) => {
+      this.dataSource.data = products;
+    });
   }
 
   editProduct(product: Product) {
@@ -41,13 +35,4 @@ export class ProductsComponent {
   deleteProduct(product: Product) {
     console.log('Delete product:', product);
   }
-}
-interface Product {
-  productName: string;
-  shortCode: string;
-  category: string;
-  price: number;
-  origin: string;
-  imageUrl: string;
-  createdDate: Date;
 }
