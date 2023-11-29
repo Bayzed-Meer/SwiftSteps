@@ -1,4 +1,4 @@
-<button mat-raised-button class="addNewProduct" routerLink="/products/create">
+<button mat-raised-button class="addNewProduct" routerLink="/product/create">
   Add New Product
 </button>
 
@@ -70,8 +70,7 @@
   <!-- Paginator -->
   <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    aria-label="Select page of products"
-  >
-  </mat-paginator>
+    [pageSize]="5"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
 </div>

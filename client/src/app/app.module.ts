@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 import { HomeComponent } from './home/home.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { ProductsCreateComponent } from './products-create/products-create.component';
@@ -28,6 +29,7 @@ import { ProductsComponent } from './products/products.component';
     MyCartComponent,
     HomeComponent,
     ProductsCreateComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -14,12 +14,29 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}/products`, productData);
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
+  getProducts(page: number, pageSize: number): Observable<Product[]> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString());
+
+    return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`, {
+      params,
+    });
   }
 
   deleteProduct(shortCode: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/product/${shortCode}`);
+    return this.http.delete<void>(`${this.baseUrl}/deleteProduct/${shortCode}`);
+  }
+
+  getProductByShortCode(shortCode: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/getProduct/${shortCode}`);
+  }
+
+  updateProduct(productData: any): Observable<void> {
+    return this.http.put<void>(
+      `${this.baseUrl}/updateProduct/${productData.shortCode}`,
+      productData
+    );
   }
 }
 
