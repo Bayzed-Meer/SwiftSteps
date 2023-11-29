@@ -14,6 +14,10 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}/products`, productData);
   }
 
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/allProducts`);
+  }
+
   getProducts(page: number, pageSize: number): Observable<Product[]> {
     const params = new HttpParams()
       .set('page', page.toString())

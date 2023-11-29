@@ -1,1 +1,16 @@
-<p>my-cart works!</p>
+<div class="example-card-container">
+  <mat-card *ngFor="let product of cartItems" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ product.productName }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ product.shortCode }} - ${{ product.price }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <img mat-card-image [src]="product.imageUrl" alt="Product Image" />
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+    </mat-card-content>
+    <p>Quantity : {{ product.quantity }}</p>
+  </mat-card>
+</div>
