@@ -1,34 +1,28 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 .navbar {
   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
-  height: 70px;
+  padding-bottom: 15px;
 }
 
 .brand_name {
-  font-size: 32px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  letter-spacing: 2px;
+  font-size: 36px;
+  letter-spacing: 3px;
+  font-family: Haettenschweiler;
 }
 
 ul,
 li {
   list-style-type: none;
-  padding: 5px 15px 5px 10px;
+  padding: 5px 15px 5px 15px;
 }
 
 button {
-  font-family: "Trebuchet MS";
-  font-size: 20px;
-  margin-right: 45px;
+  font-size: 22px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 button:hover {
-  background-color: lightgrey;
+  background-color: rgb(155, 153, 153);
   transform: scale(1.05);
   color: black;
 }

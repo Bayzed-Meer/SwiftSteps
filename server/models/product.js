@@ -1,37 +1,54 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  productName: 
-  { 
-    type: String, 
+  productName: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 50,
+  },
+  shortCode: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 50,
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ['sports', 'casual', 'running'], 
+  },
+  price: {
+    type: Number,
     required: true,
   },
-  shortCode: { 
-    type: String, 
-    required: true, 
+  description: {
+    type: String,
+    minlength: 3,
+    maxlength: 250,
   },
-  category: { 
-    type: String, 
-    required: true 
+  imageUrl: {
+    type: String,
   },
-  price: { 
-    type: Number, 
-    required: true 
+  createdDate: {
+    type: Date,
+    required: true,
+    max: Date.now,
+    validate: {
+      validator: function (date) {
+        return date <= new Date();
+      },
+      message: 'Created Date should not be after the current date.',
+    },
   },
-  description: { 
-    type: String, 
+  origin: {
+    type: String,
+    required: true,
+    enum: ['Bangladesh', 'China', 'Vietnam'],
   },
-  imageUrl: { 
-    type: String 
-  },
-  createdDate: { 
-    type: Date, 
-    required: true, 
-    max: Date.now 
-  },
-  origin: { 
-    type: String, 
-    required: true 
+  quantity: {
+    type: Number,
+    required: true,
   },
 });
 

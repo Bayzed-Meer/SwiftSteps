@@ -1,80 +1,107 @@
-<button mat-raised-button class="addNewProduct" routerLink="/product/create">
-  Add New Product
-</button>
-
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
-    <!-- Product Name Column -->
-    <ng-container matColumnDef="productName">
-      <th mat-header-cell *matHeaderCellDef>Product Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.productName }}</td>
-    </ng-container>
-
-    <!-- Short Code Column -->
-    <ng-container matColumnDef="shortCode">
-      <th mat-header-cell *matHeaderCellDef>Short Code</th>
-      <td mat-cell *matCellDef="let element">{{ element.shortCode }}</td>
-    </ng-container>
-
-    <!-- Category Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef>Category</th>
-      <td mat-cell *matCellDef="let element">{{ element.category }}</td>
-    </ng-container>
-
-    <!-- Price Column -->
-    <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
-      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
-    </ng-container>
-
-    <!-- Origin Column -->
-    <ng-container matColumnDef="origin">
-      <th mat-header-cell *matHeaderCellDef>Origin</th>
-      <td mat-cell *matCellDef="let element">{{ element.origin }}</td>
-    </ng-container>
-
-    <!-- Image URL Column -->
-    <ng-container matColumnDef="imageUrl">
-      <th mat-header-cell *matHeaderCellDef>Image URL</th>
-      <td mat-cell *matCellDef="let element">{{ element.imageUrl }}</td>
-    </ng-container>
-
-    <!-- Created Date Column -->
-    <ng-container matColumnDef="createdDate">
-      <th mat-header-cell *matHeaderCellDef>Created Date</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.createdDate | date : "medium" }}
-      </td>
-    </ng-container>
-
-    <!-- Actions Column (for edit/delete buttons) -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let element">
-        <!-- You can add buttons for actions (edit, delete, etc.) here -->
-        <button mat-icon-button color="primary" (click)="editProduct(element)">
-          Edit
-        </button>
-        <button mat-icon-button color="warn" (click)="deleteProduct(element)">
-          Delete
-        </button>
-      </td>
-    </ng-container>
-
-    <!-- Define the header and row definitions -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <!-- Paginator -->
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="5"></mat-paginator>
-  <mat-paginator
-    [pageSize]="5"
-    [length]="200"
-    [pageSizeOptions]="[10, 50, 100]"
-    aria-label="Select page"
-    (page)="onPageChange($event)"
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="table">
+  <button
+    mat-raised-button
+    color="primary"
+    class="addProduct"
+    routerLink="/product/create"
   >
-  </mat-paginator>
+    Add New Product
+  </button>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Product Name Column -->
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef>Product Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.productName }}</td>
+      </ng-container>
+
+      <!-- Short Code Column -->
+      <ng-container matColumnDef="shortCode">
+        <th mat-header-cell *matHeaderCellDef>Short Code</th>
+        <td mat-cell *matCellDef="let element">{{ element.shortCode }}</td>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">${{ element.price }}</td>
+      </ng-container>
+
+      <!-- Origin Column -->
+      <ng-container matColumnDef="origin">
+        <th mat-header-cell *matHeaderCellDef>Origin</th>
+        <td mat-cell *matCellDef="let element">{{ element.origin }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
+
+      <!-- Image URL Column -->
+      <ng-container matColumnDef="imageUrl">
+        <th mat-header-cell *matHeaderCellDef>Image URL</th>
+        <td mat-cell *matCellDef="let element">{{ element.imageUrl }}</td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef>Created Date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdDate | date : "medium" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-fab
+            color="primary"
+            (click)="editProduct(element)"
+            class="icon"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-fab
+            color="warn"
+            (click)="deleteProduct(element)"
+            class="icon"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Define the header and row definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="10"
+      [length]="200"
+      aria-label="Select page"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+  </div>
 </div>

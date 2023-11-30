@@ -10,12 +10,14 @@ import { Product, ProductService } from '../product.service';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
+  isLoading = true;
   displayedColumns: string[] = [
     'productName',
     'shortCode',
     'category',
     'price',
     'origin',
+    'quantity',
     'imageUrl',
     'createdDate',
     'actions',
@@ -27,8 +29,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource);
+    // Uncomment the line below if you still need to set the paginator here
+    // this.dataSource.paginator = this.paginator;
   }
 
   currentPage: number = 1;
@@ -38,10 +40,24 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   refreshTable(page: number) {
-    const pageSize = 5;
-    this.productService.getProducts(page, pageSize).subscribe((products) => {
-      this.dataSource.data = products;
-      this.currentPage = page;
+    const pageSize = 10;
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
+
+    this.productService.getProducts(page, pageSize).subscribe({
+      next: (products) => {
+        this.dataSource.data = products;
+        this.currentPage = page;
+
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+        });
+      },
+      error: (error) => {
+        console.error('Error fetching products', error);
+      },
     });
   }
 

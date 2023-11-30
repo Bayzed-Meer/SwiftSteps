@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
@@ -10,6 +10,8 @@ import { ProductService } from '../product.service';
 })
 export class ProductsCreateComponent {
   productForm: FormGroup = new FormGroup({});
+  maxDate: any;
+  isLoading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -19,32 +21,56 @@ export class ProductsCreateComponent {
 
   ngOnInit(): void {
     this.createForm();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
   }
 
   createForm() {
+    this.maxDate = new Date();
     this.productForm = this.fb.group({
-      productName: '',
-      shortCode: '',
-      category: '',
-      price: '',
-      description: '',
-      imageUrl: '',
-      createdDate: '',
-      origin: '',
+      productName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      shortCode: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      category: ['', Validators.required],
+      price: ['', Validators.required],
+      description: ['', [Validators.minLength(3), Validators.maxLength(250)]],
+      imageUrl: [''],
+      createdDate: ['', [Validators.required]],
+      origin: ['', Validators.required],
+      quantity: ['', Validators.required],
     });
   }
 
   onSubmit() {
     const formData = this.productForm.value;
     console.log(formData);
-    this.productService.createProduct(formData).subscribe({
-      next: (response) => {
-        console.log('Product created successfully', response);
-        this.router.navigate(['/products']);
-      },
-      error: (error) => {
-        console.error('Error creating product', error);
-      },
-    });
+
+    if (this.productForm.valid) {
+      this.productService.createProduct(formData).subscribe({
+        next: (response) => {
+          console.log('Product created successfully', response);
+          this.router.navigate(['/products']);
+        },
+        error: (error) => {
+          console.error('Error creating product', error);
+        },
+      });
+    } else {
+      console.error('Form validation failed. Please check the entered data.');
+    }
   }
 }

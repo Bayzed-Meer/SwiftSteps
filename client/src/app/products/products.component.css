@@ -1,4 +1,32 @@
-.addNewProduct {
-  margin: 10px;
-  padding: 10px;
+.table {
+  margin: 40px 15px 15px 15px;
+  border: 2px solid #4758b8;
+}
+.addProduct {
+  margin: 5px 5px 0px 5px;
+  border-radius: 0%;
+  font-size: 16px;
+}
+.mat-elevation-z8 {
+  margin: 5px;
+}
+th {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 20px;
+}
+td {
+  padding: 5px 25px 5px 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
+.mat-paginator {
+  margin-top: 10px;
 }
