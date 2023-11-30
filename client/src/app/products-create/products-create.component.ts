@@ -36,6 +36,7 @@ export class ProductsCreateComponent {
 
   onSubmit() {
     const formData = this.productForm.value;
+    console.log(formData);
     this.productService.createProduct(formData).subscribe({
       next: (response) => {
         console.log('Product created successfully', response);

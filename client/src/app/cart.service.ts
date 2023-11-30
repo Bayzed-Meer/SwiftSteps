@@ -26,4 +26,25 @@ export class CartService {
   clearCart() {
     this.cartItems = [];
   }
+
+  incrementQuantity(item: any) {
+    item.quantity += 1;
+  }
+
+  decrementQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      this.removeItem(item);
+    }
+  }
+
+  removeItem(item: any) {
+    const index = this.cartItems.findIndex(
+      (cartItem) => cartItem.shortCode === item.shortCode
+    );
+    if (index !== -1) {
+      this.cartItems.splice(index, 1);
+    }
+  }
 }

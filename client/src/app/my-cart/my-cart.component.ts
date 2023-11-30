@@ -12,4 +12,16 @@ export class MyCartComponent {
   constructor(private cartService: CartService) {
     this.cartItems = this.cartService.getCartItems();
   }
+
+  incrementQuantity(item: any) {
+    this.cartService.incrementQuantity(item);
+  }
+
+  decrementQuantity(item: any) {
+    this.cartService.decrementQuantity(item);
+  }
+
+  removeItem(item: any) {
+    this.cartService.removeItem(item);
+  }
 }
