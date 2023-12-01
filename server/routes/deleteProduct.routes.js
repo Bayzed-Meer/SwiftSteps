@@ -3,10 +3,9 @@ const router = express.Router();
 const Product = require('../models/product');
 
 const deleteProduct = async (req, res) => {
-    const shortCodeToDelete = req.params.shortCode;
-  
+    const productIdToDelete = req.params.productId;
     try {
-        const deletedProduct = await Product.findOneAndDelete({ shortCode: shortCodeToDelete });
+        const deletedProduct = await Product.findByIdAndDelete(productIdToDelete);
 
         if (!deletedProduct) {
             return res.status(404).send('Product not found');

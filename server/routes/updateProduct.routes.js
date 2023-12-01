@@ -3,14 +3,14 @@ const router = express.Router();
 const Product = require('../models/product');
 
 const updateProduct = async (req, res) => {
-  const shortCodeToUpdate = req.params.shortCode;
+  const productIdToUpdate = req.params.productId;
   const updatedProductData = req.body;
 
   try {
-    const updatedProduct = await Product.findOneAndUpdate(
-      { shortCode: shortCodeToUpdate },
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productIdToUpdate,
       updatedProductData,
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     if (!updatedProduct) {

@@ -40,14 +40,15 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   refreshTable(page: number) {
-    const pageSize = 10;
+    const pageSize = 5;
 
     setTimeout(() => {
       this.isLoading = false;
     }, 800);
 
-    this.productService.getProducts(page, pageSize).subscribe({
+    this.productService.getProductsPerPage(page, pageSize).subscribe({
       next: (products) => {
+        console.log(products);
         this.dataSource.data = products;
         this.currentPage = page;
 
@@ -66,17 +67,17 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   editProduct(product: Product) {
-    this.router.navigate(['/edit-product', product.shortCode]);
+    this.router.navigate(['/edit-product', product._id]);
   }
 
   deleteProduct(product: Product) {
-    const shortCodeToDelete = product.shortCode;
+    const idToDelete = product._id;
 
-    this.productService.deleteProduct(shortCodeToDelete).subscribe({
+    this.productService.deleteProduct(idToDelete).subscribe({
       next: () => {
         console.log('Product deleted successfully:', product);
         const index = this.dataSource.data.findIndex(
-          (p) => p.shortCode === shortCodeToDelete
+          (p) => p._id === idToDelete
         );
 
         if (index !== -1) {

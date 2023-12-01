@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 
-const getAllProducts = async (req, res) => {
+const getProductsPerPage = async (req, res) => {
     try {
         const products = await Product.find();
         res.json(products);
@@ -12,4 +12,4 @@ const getAllProducts = async (req, res) => {
       }
 };
 
-module.exports = getAllProducts;
+module.exports = getProductsPerPage;

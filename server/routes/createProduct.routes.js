@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 
-const productRoutes = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     const productData = req.body;
     const newProduct = new Product(productData);
@@ -15,4 +15,4 @@ const productRoutes = async (req, res) => {
   }
 };
 
-module.exports = productRoutes;
+module.exports = createProduct;

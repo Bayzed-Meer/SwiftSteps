@@ -10,7 +10,7 @@ import { ProductService } from './../product.service';
 })
 export class DashboardComponent implements OnInit {
   product: any;
-
+  isLoading = true;
   addToCart(product: any) {
     this.cartService.addToCart(product);
     this.snackBar.open('Product added to cart', 'Dismiss', {
@@ -28,6 +28,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
     this.productService.getAllProducts().subscribe({
       next: (data) => {
         this.product = data;

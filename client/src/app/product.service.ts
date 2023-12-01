@@ -11,46 +11,49 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   createProduct(productData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/products`, productData);
+    return this.http.post(`${this.baseUrl}/createProduct`, productData);
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/allProducts`);
+    return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
   }
 
-  getProducts(page: number, pageSize: number): Observable<Product[]> {
+  getProductsPerPage(page: number, pageSize: number): Observable<Product[]> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('pageSize', pageSize.toString());
 
-    return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`, {
+    return this.http.get<Product[]>(`${this.baseUrl}/getProductsPerPage`, {
       params,
     });
   }
 
-  deleteProduct(shortCode: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/deleteProduct/${shortCode}`);
+  deleteProduct(productId: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/deleteProduct/${productId}`);
   }
 
-  getProductByShortCode(shortCode: string): Observable<Product> {
-    return this.http.get<Product>(`${this.baseUrl}/getProduct/${shortCode}`);
+  getProductById(productId: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/getProduct/${productId}`);
   }
 
   updateProduct(productData: any): Observable<void> {
+    const productId = productData._id;
     return this.http.put<void>(
-      `${this.baseUrl}/updateProduct/${productData.shortCode}`,
+      `${this.baseUrl}/updateProduct/${productId}`,
       productData
     );
   }
 }
 
 export interface Product {
+  _id: string;
   productName: string;
   shortCode: string;
   category: string;
   price: number;
   origin: string;
-  imageUrl: string;
-  description: string;
+  quantity: number;
+  imageUrl?: string;
+  description?: string;
   createdDate: Date;
 }

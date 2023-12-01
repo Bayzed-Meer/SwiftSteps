@@ -1,46 +1,113 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="container">
   <mat-card class="form-card">
     <h1>Edit Product</h1>
 
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full-width">
-        <mat-label>Product Name</mat-label>
-        <input matInput formControlName="productName" />
-      </mat-form-field>
+      <div class="part1">
+        <mat-form-field class="full-width">
+          <mat-label>Product Name</mat-label>
+          <input matInput formControlName="productName" />
+          <mat-error
+            *ngIf="productForm.get('productName')!.hasError('required')"
+          >
+            Product Name is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Short Code</mat-label>
-        <input matInput formControlName="shortCode" />
-      </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Short Code</mat-label>
+          <input matInput formControlName="shortCode" />
+          <mat-error *ngIf="productForm.get('shortCode')!.hasError('required')">
+            Short Code is required
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Category</mat-label>
-        <input matInput formControlName="category" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Price</mat-label>
-        <input matInput formControlName="price" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Image Url</mat-label>
-        <input matInput formControlName="imageUrl" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>CreatedDate</mat-label>
-        <input matInput formControlName="createdDate" />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Origin</mat-label>
-        <input matInput formControlName="origin" />
-      </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option value="sports">Sports</mat-option>
+            <mat-option value="casual">Casual</mat-option>
+            <mat-option value="running">Running</mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('category')!.hasError('required')">
+            Category is required
+          </mat-error>
+        </mat-form-field>
 
-      <button mat-raised-button type="submit" [disabled]="productForm.invalid">
-        Update Product
-      </button>
+        <mat-form-field class="full-width">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" />
+          <mat-error *ngIf="productForm.get('price')!.hasError('required')">
+            Price is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('price')!.hasError('min')">
+            Price cannot be negative
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          type="submit"
+          [disabled]="productForm.invalid"
+          color="primary"
+        >
+          Update Product
+        </button>
+      </div>
+
+      <div class="part2">
+        <mat-form-field class="full-width">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Quantity</mat-label>
+          <input matInput formControlName="quantity" type="number" />
+          <mat-error *ngIf="productForm.get('quantity')!.hasError('required')">
+            Quantity is required
+          </mat-error>
+          <mat-error *ngIf="productForm.get('quantity')!.hasError('min')">
+            Quantity cannot be less than 1
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Origin</mat-label>
+          <mat-select formControlName="origin">
+            <mat-option value="Bangladesh">Bangladesh</mat-option>
+            <mat-option value="China">China</mat-option>
+            <mat-option value="Vietnam">Vietnam</mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('origin')!.hasError('required')">
+            Origin is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="createdDate"
+            [max]="maxDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="productForm.get('createdDate')!.hasError('max')">
+            Date cannot be after the current date
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Image Url</mat-label>
+          <input matInput formControlName="imageUrl" />
+        </mat-form-field>
+      </div>
     </form>
   </mat-card>
 </div>

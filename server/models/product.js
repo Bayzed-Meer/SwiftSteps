@@ -16,11 +16,17 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['sports', 'casual', 'running'], 
+    enum: ['sports', 'casual', 'running'],
   },
   price: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (price) {
+        return price >= 0;
+      },
+      message: 'Price should be a non-negative number.',
+    },
   },
   description: {
     type: String,
@@ -49,6 +55,12 @@ const productSchema = new mongoose.Schema({
   quantity: {
     type: Number,
     required: true,
+    validate: {
+      validator: function (quantity) {
+        return Number.isInteger(quantity) && quantity > 0;
+      },
+      message: 'Quantity should be a positive integer.',
+    },
   },
 });
 

@@ -11,7 +11,6 @@ import { ProductService } from '../product.service';
 export class ProductsCreateComponent {
   productForm: FormGroup = new FormGroup({});
   maxDate: any;
-  isLoading = true;
 
   constructor(
     private fb: FormBuilder,
@@ -21,9 +20,6 @@ export class ProductsCreateComponent {
 
   ngOnInit(): void {
     this.createForm();
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
   }
 
   createForm() {
@@ -48,16 +44,15 @@ export class ProductsCreateComponent {
       category: ['', Validators.required],
       price: ['', Validators.required],
       description: ['', [Validators.minLength(3), Validators.maxLength(250)]],
+      quantity: ['', Validators.required],
       imageUrl: [''],
       createdDate: ['', [Validators.required]],
       origin: ['', Validators.required],
-      quantity: ['', Validators.required],
     });
   }
 
   onSubmit() {
     const formData = this.productForm.value;
-    console.log(formData);
 
     if (this.productForm.valid) {
       this.productService.createProduct(formData).subscribe({

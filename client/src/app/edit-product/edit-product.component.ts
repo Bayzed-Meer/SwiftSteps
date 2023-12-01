@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
@@ -8,16 +8,26 @@ import { ProductService } from '../product.service';
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css'],
 })
-export class EditProductComponent implements OnInit {
+export class EditProductComponent {
+  maxDate: any;
+  isLoading = true;
   productForm: FormGroup = this.fb.group({
-    productName: '',
-    shortCode: '',
-    category: '',
-    price: '',
-    description: '',
-    imageUrl: '',
-    createdDate: '',
-    origin: '',
+    _id: [''],
+    productName: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+    ],
+    shortCode: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+    ],
+    category: ['', Validators.required],
+    price: ['', Validators.required],
+    description: ['', [Validators.minLength(3), Validators.maxLength(250)]],
+    quantity: ['', Validators.required],
+    imageUrl: [''],
+    createdDate: ['', [Validators.required]],
+    origin: ['', Validators.required],
   });
 
   constructor(
@@ -28,21 +38,22 @@ export class EditProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 800);
+    this.maxDate = new Date();
     this.route.params.subscribe({
       next: (params) => {
-        const shortCode = params['shortCode'];
-
-        if (!shortCode) {
-          console.error('Short code is undefined');
-          // Handle the error or navigate to an error page
+        const productId = params['productId'];
+        if (!productId) {
+          console.error('Product ID is undefined');
           return;
         }
 
-        this.productService.getProductByShortCode(shortCode).subscribe({
+        this.productService.getProductById(productId).subscribe({
           next: (product) => {
             if (!product) {
               console.error('Product not found');
-              // Handle the error or navigate to an error page
               return;
             }
 
@@ -60,7 +71,9 @@ export class EditProductComponent implements OnInit {
   }
 
   onSubmit() {
+    const productId = this.productForm!.get('_id')!.value;
     const formData = this.productForm.value;
+    formData.id = productId;
     this.productService.updateProduct(formData).subscribe({
       next: () => {
         console.log('Product updated successfully');

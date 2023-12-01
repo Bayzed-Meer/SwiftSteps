@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product/create', component: ProductsCreateComponent },
   { path: 'myCart', component: MyCartComponent },
-  { path: 'edit-product/:shortCode', component: EditProductComponent },
+  { path: 'edit-product/:productId', component: EditProductComponent },
 ];
 
 @NgModule({

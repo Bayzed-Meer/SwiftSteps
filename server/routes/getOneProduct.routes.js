@@ -3,10 +3,9 @@ const router = express.Router();
 const Product = require('../models/product');
 
 const getOneProduct = async (req, res) => {
-  const shortCode = req.params.shortCode;
-
+  const productId = req.params.productId;
   try {
-    const product = await Product.findOne({ shortCode });
+    const product = await Product.findById(productId); 
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
@@ -18,5 +17,6 @@ const getOneProduct = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 module.exports = getOneProduct;
