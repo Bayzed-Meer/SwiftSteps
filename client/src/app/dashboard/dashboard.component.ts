@@ -28,15 +28,14 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
     this.productService.getAllProducts().subscribe({
       next: (data) => {
         this.product = data;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching product details:', error);
+        this.isLoading = false;
       },
     });
   }

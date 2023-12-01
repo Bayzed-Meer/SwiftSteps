@@ -38,15 +38,13 @@ export class EditProductComponent {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
     this.maxDate = new Date();
     this.route.params.subscribe({
       next: (params) => {
         const productId = params['productId'];
         if (!productId) {
           console.error('Product ID is undefined');
+          this.isLoading = false;
           return;
         }
 
@@ -54,18 +52,22 @@ export class EditProductComponent {
           next: (product) => {
             if (!product) {
               console.error('Product not found');
+              this.isLoading = false;
               return;
             }
 
             this.productForm.patchValue(product);
+            this.isLoading = false;
           },
           error: (error) => {
             console.error('Error fetching product:', error);
+            this.isLoading = false;
           },
         });
       },
       error: (error) => {
         console.error('Error subscribing to route params:', error);
+        this.isLoading = false;
       },
     });
   }

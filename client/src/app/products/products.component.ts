@@ -34,35 +34,32 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   currentPage: number = 1;
+  pageSize: number = 10;
 
   ngOnInit() {
     this.refreshTable(this.currentPage);
   }
 
   refreshTable(page: number) {
-    const pageSize = 5;
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 800);
-
-    this.productService.getProductsPerPage(page, pageSize).subscribe({
+    this.productService.getProductsPerPage(page, this.pageSize).subscribe({
       next: (products) => {
-        console.log(products);
         this.dataSource.data = products;
         this.currentPage = page;
 
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
+          this.isLoading = false;
         });
       },
       error: (error) => {
         console.error('Error fetching products', error);
+        this.isLoading = false;
       },
     });
   }
 
   onPageChange(event: any) {
+    this.pageSize = event.pageSize;
     this.refreshTable(event.pageIndex + 1);
   }
 
