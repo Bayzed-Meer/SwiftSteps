@@ -19,10 +19,21 @@ form {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 36px;
   text-align: center;
+  font-family: "Cuprum", sans-serif;
 }
 
 .full-width {
   width: 100%;
+}
+
+mat-label,
+button {
+  font-family: "Cuprum", sans-serif;
+  font-size: 20px;
+}
+
+mat-hint {
+  font-family: "Cuprum", sans-serif;
 }

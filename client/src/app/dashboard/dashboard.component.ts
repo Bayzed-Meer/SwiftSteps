@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     this.cartService.addToCart(product);
     this.snackBar.open('Product added to cart', 'Dismiss', {
       duration: 700,
+      verticalPosition: 'top',
     });
 
     const cartItems = this.cartService.getCartItems();

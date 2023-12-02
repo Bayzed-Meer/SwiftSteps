@@ -1,78 +1,46 @@
-/* styles.css or your custom CSS file */
-
-.example-card-container {
+.card-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-top: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 25px;
+  gap: 20px;
 }
 
-.example-card {
-  max-width: 100%;
+.card {
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-  cursor: pointer;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #fff;
 }
 
-.example-card:hover {
-  transform: scale(1.05);
+.card:hover {
+  transform: scale(1.03);
 }
 
-.example-card img {
+img {
   max-width: 100%;
-  height: auto;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  padding: 15px;
+  border-radius: 20px;
 }
 
-.example-card-content {
-  padding: 16px;
-  flex-grow: 1;
+mat-card-title {
+  font-family: "Cuprum", sans-serif;
+  font-size: 24px;
 }
 
-.example-card-title {
-  margin-bottom: 8px;
+mat-card-subtitle {
+  font-family: "Cuprum", sans-serif;
+  font-size: 18px;
+}
+
+mat-card-content {
+  font-family: "Cuprum", sans-serif;
   font-size: 20px;
-  font-weight: bold;
-  color: #333;
+  margin: 5px 5px 0px 0px;
 }
-
-.example-card-subtitle {
-  color: #777;
-  margin-bottom: 16px;
-}
-
-.example-card-description {
-  line-height: 1.6;
-  color: #444;
-}
-
-.example-card-actions {
-  padding: 16px;
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-.example-card-actions button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.example-card-actions button:hover {
-  background-color: #0056b3;
+button {
+  font-family: "Cuprum", sans-serif;
+  margin: 5px;
+  font-size: 16px;
 }

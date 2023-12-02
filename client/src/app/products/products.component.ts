@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Product, ProductService } from '../product.service';
@@ -9,16 +8,16 @@ import { Product, ProductService } from '../product.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements OnInit {
   isLoading = true;
   displayedColumns: string[] = [
+    'number',
     'productName',
     'shortCode',
     'category',
     'price',
     'origin',
     'quantity',
-    'imageUrl',
     'createdDate',
     'actions',
   ];
@@ -26,15 +25,9 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
   constructor(private productService: ProductService, private router: Router) {}
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    // Uncomment the line below if you still need to set the paginator here
-    // this.dataSource.paginator = this.paginator;
-  }
-
   currentPage: number = 1;
   pageSize: number = 10;
+  totalProduct: number = 0;
 
   ngOnInit() {
     this.refreshTable(this.currentPage);
@@ -43,17 +36,30 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   refreshTable(page: number) {
     this.productService.getProductsPerPage(page, this.pageSize).subscribe({
       next: (products) => {
+        products.forEach(
+          (product, index) =>
+            (product.number = (page - 1) * this.pageSize + index + 1)
+        );
+
         this.dataSource.data = products;
         this.currentPage = page;
 
         setTimeout(() => {
-          this.dataSource.paginator = this.paginator;
           this.isLoading = false;
         });
       },
       error: (error) => {
         console.error('Error fetching products', error);
         this.isLoading = false;
+      },
+    });
+
+    this.productService.getAllProducts().subscribe({
+      next: (data) => {
+        this.totalProduct = data.length;
+      },
+      error: (error) => {
+        console.error('Error fetching product details:', error);
       },
     });
   }

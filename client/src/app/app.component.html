@@ -1,10 +1,14 @@
 <ul fxLayout="row" fxLayoutAlign="space-between center" class="navbar">
   <li class="brand_name">SwiftSteps</li>
   <li>
-    <button mat-flat-button routerLink="">Home</button>
-    <button mat-flat-button routerLink="/dashboard">Dashboard</button>
-    <button mat-flat-button routerLink="/products">Products</button>
-    <button mat-flat-button routerLink="myCart">MyCart</button>
+    <button mat-flat-button routerLink="" class="pages">Home</button>
+    <button mat-flat-button routerLink="/dashboard" class="pages">
+      Dashboard
+    </button>
+    <button mat-flat-button routerLink="/products" class="pages">
+      Products
+    </button>
+    <button mat-flat-button routerLink="myCart" class="pages">MyCart</button>
   </li>
 </ul>
 <router-outlet></router-outlet>

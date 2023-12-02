@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  imageUrl: string = './../assets/images/Swiftsteps_logo.png';
+  imageUrl: string = './../assets/images/shoes_4598444.png';
 }

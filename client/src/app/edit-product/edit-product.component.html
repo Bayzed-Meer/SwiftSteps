@@ -26,9 +26,9 @@
         <mat-form-field class="full-width">
           <mat-label>Category</mat-label>
           <mat-select formControlName="category">
-            <mat-option value="sports">Sports</mat-option>
-            <mat-option value="casual">Casual</mat-option>
-            <mat-option value="running">Running</mat-option>
+            <mat-option value="Sports">Sports</mat-option>
+            <mat-option value="Casual">Casual</mat-option>
+            <mat-option value="Running">Running</mat-option>
           </mat-select>
           <mat-error *ngIf="productForm.get('category')!.hasError('required')">
             Category is required
@@ -57,10 +57,23 @@
 
       <div class="part2">
         <mat-form-field class="full-width">
-          <mat-label>Description</mat-label>
-          <input matInput formControlName="description" />
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="createdDate"
+            [max]="maxDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="productForm.get('createdDate')!.hasError('max')">
+            Date cannot be after the current date
+          </mat-error>
         </mat-form-field>
-
         <mat-form-field class="full-width">
           <mat-label>Quantity</mat-label>
           <input matInput formControlName="quantity" type="number" />
@@ -85,22 +98,8 @@
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <mat-label>Choose a date</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            formControlName="createdDate"
-            [max]="maxDate"
-          />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="productForm.get('createdDate')!.hasError('max')">
-            Date cannot be after the current date
-          </mat-error>
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
         </mat-form-field>
 
         <mat-form-field class="full-width">

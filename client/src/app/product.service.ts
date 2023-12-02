@@ -56,4 +56,5 @@ export interface Product {
   imageUrl?: string;
   description?: string;
   createdDate: Date;
+  number?: number;
 }

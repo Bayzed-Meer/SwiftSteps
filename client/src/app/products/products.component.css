@@ -1,25 +1,36 @@
 .table {
-  margin: 30px 15px 15px 15px;
-  border: 2px solid #4758b8;
+  margin: 25px 30px 20px 30px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  margin: 10px 0px 0px 10px;
+  font-family: "Cuprum", sans-serif;
+  font-size: 26px;
+  font-weight: bold;
 }
 .addProduct {
-  margin: 5px 5px 0px 5px;
+  margin: 10px 10px 0px 0px;
   border-radius: 0%;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: "Cuprum", sans-serif;
 }
 .mat-elevation-z8 {
-  margin: 5px;
+  margin: 10px;
 }
 th {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Cuprum", sans-serif;
   padding: 20px;
 }
 td {
-  padding: 5px 25px 5px 25px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 15px;
+  padding: 5px 0px 5px 25px;
+  font-family: "Cuprum", sans-serif;
+  font-size: 18px;
 }
 
 .icon {
@@ -27,6 +38,8 @@ td {
   height: 45px;
   margin: 5px;
 }
-.mat-paginator {
+mat-paginator {
   margin-top: 10px;
+  font-family: "Cuprum", sans-serif;
+  font-size: 18px;
 }

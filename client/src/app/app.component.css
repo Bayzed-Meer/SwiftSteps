@@ -1,12 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .navbar {
   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.1);
-  padding-bottom: 15px;
+  padding: 20px;
 }
 
 .brand_name {
   font-size: 36px;
-  letter-spacing: 3px;
-  font-family: Haettenschweiler;
+  letter-spacing: 2px;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 ul,
@@ -15,14 +20,15 @@ li {
   padding: 5px 15px 5px 15px;
 }
 
-button {
-  font-size: 22px;
+.pages {
+  font-size: 25px;
   margin-left: 10px;
   margin-right: 10px;
+  font-family: "Cuprum", sans-serif;
 }
 
-button:hover {
-  background-color: rgb(155, 153, 153);
-  transform: scale(1.05);
+.pages:hover {
+  background-color: ghostwhite;
+  transform: scale(1.03);
   color: black;
 }
