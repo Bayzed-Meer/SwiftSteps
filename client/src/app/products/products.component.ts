@@ -29,17 +29,13 @@ export class ProductsComponent {
   pageSize: number = 10;
   totalProduct: number = 0;
 
-  sortBy: string = 'price'; // Initial sorting column
-  isAscending: boolean = true; // Initial sorting order
-
-  // ... existing code ...
+  sortBy: string = 'price';
+  isAscending: boolean = true;
 
   sortTable(column: string) {
     if (this.sortBy === column) {
-      // If already sorting by this column, reverse the order
       this.isAscending = !this.isAscending;
     } else {
-      // If sorting by a new column, set it as the active column and set ascending order
       this.sortBy = column;
       this.isAscending = true;
     }
