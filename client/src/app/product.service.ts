@@ -18,10 +18,17 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
   }
 
-  getProductsPerPage(page: number, pageSize: number): Observable<Product[]> {
+  getProductsPerPage(
+    page: number,
+    pageSize: number,
+    sortBy: string,
+    isAscending: boolean
+  ): Observable<Product[]> {
     const params = new HttpParams()
       .set('page', page.toString())
-      .set('pageSize', pageSize.toString());
+      .set('pageSize', pageSize.toString())
+      .set('sortBy', sortBy)
+      .set('isAscending', isAscending.toString());
 
     return this.http.get<Product[]>(`${this.baseUrl}/getProductsPerPage`, {
       params,

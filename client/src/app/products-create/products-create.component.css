@@ -28,12 +28,20 @@ h1 {
   width: 100%;
 }
 
-mat-label,
-button {
+mat-label {
   font-family: "Cuprum", sans-serif;
   font-size: 20px;
 }
 
-mat-hint {
+button {
+  letter-spacing: -0.5px;
+  font-family: "Cuprum", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+mat-hint,
+mat-error {
   font-family: "Cuprum", sans-serif;
 }

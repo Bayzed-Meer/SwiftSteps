@@ -8,19 +8,19 @@ export class CartService {
 
   addToCart(product: any) {
     const existingItem = this.cartItems.find(
-      (item) => item.shortCode === product.shortCode
+      (item) => item._id === product._id
     );
 
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.requestedQuantity += 1;
     } else {
-      const newItem = { ...product, quantity: 1 };
+      const newItem = { ...product, requestedQuantity: 1 };
       this.cartItems.push(newItem);
     }
   }
 
   getCartItems() {
-    return this.cartItems;
+    return [...this.cartItems];
   }
 
   clearCart() {
@@ -28,12 +28,12 @@ export class CartService {
   }
 
   incrementQuantity(item: any) {
-    item.quantity += 1;
+    item.requestedQuantity += 1;
   }
 
   decrementQuantity(item: any) {
-    if (item.quantity > 1) {
-      item.quantity -= 1;
+    if (item.requestedQuantity > 1) {
+      item.requestedQuantity -= 1;
     } else {
       this.removeItem(item);
     }
@@ -41,7 +41,7 @@ export class CartService {
 
   removeItem(item: any) {
     const index = this.cartItems.findIndex(
-      (cartItem) => cartItem.shortCode === item.shortCode
+      (cartItem) => cartItem._id === item._id
     );
     if (index !== -1) {
       this.cartItems.splice(index, 1);

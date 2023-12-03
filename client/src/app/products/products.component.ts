@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Product, ProductService } from '../product.service';
@@ -8,7 +8,7 @@ import { Product, ProductService } from '../product.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   isLoading = true;
   displayedColumns: string[] = [
     'number',
@@ -29,30 +29,50 @@ export class ProductsComponent implements OnInit {
   pageSize: number = 10;
   totalProduct: number = 0;
 
+  sortBy: string = 'price'; // Initial sorting column
+  isAscending: boolean = true; // Initial sorting order
+
+  // ... existing code ...
+
+  sortTable(column: string) {
+    if (this.sortBy === column) {
+      // If already sorting by this column, reverse the order
+      this.isAscending = !this.isAscending;
+    } else {
+      // If sorting by a new column, set it as the active column and set ascending order
+      this.sortBy = column;
+      this.isAscending = true;
+    }
+
+    this.refreshTable(this.currentPage);
+  }
+
   ngOnInit() {
     this.refreshTable(this.currentPage);
   }
 
   refreshTable(page: number) {
-    this.productService.getProductsPerPage(page, this.pageSize).subscribe({
-      next: (products) => {
-        products.forEach(
-          (product, index) =>
-            (product.number = (page - 1) * this.pageSize + index + 1)
-        );
+    this.productService
+      .getProductsPerPage(page, this.pageSize, this.sortBy, this.isAscending)
+      .subscribe({
+        next: (products) => {
+          products.forEach(
+            (product, index) =>
+              (product.number = (page - 1) * this.pageSize + index + 1)
+          );
 
-        this.dataSource.data = products;
-        this.currentPage = page;
+          this.dataSource.data = products;
+          this.currentPage = page;
 
-        setTimeout(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+          });
+        },
+        error: (error) => {
+          console.error('Error fetching products', error);
           this.isLoading = false;
-        });
-      },
-      error: (error) => {
-        console.error('Error fetching products', error);
-        this.isLoading = false;
-      },
-    });
+        },
+      });
 
     this.productService.getAllProducts().subscribe({
       next: (data) => {
@@ -86,6 +106,7 @@ export class ProductsComponent implements OnInit {
         if (index !== -1) {
           this.dataSource.data.splice(index, 1);
           this.dataSource._updateChangeSubscription();
+          this.refreshTable(this.currentPage);
         }
       },
       error: (error) => {

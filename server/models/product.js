@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: function (price) {
-        return price >= 0;
+        return price > 0;
       },
       message: 'Price should be a non-negative number.',
     },

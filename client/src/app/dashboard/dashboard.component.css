@@ -20,6 +20,8 @@
 
 img {
   max-width: 100%;
+  min-width: 400px;
+  min-height: 350px;
   padding: 15px;
   border-radius: 20px;
 }
@@ -41,6 +43,8 @@ mat-card-content {
 }
 button {
   font-family: "Cuprum", sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: bold;
   margin: 5px;
   font-size: 16px;
 }

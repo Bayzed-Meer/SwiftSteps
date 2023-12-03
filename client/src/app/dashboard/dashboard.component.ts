@@ -9,6 +9,11 @@ import { ProductService } from './../product.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private snackBar: MatSnackBar
+  ) {}
   product: any;
   isLoading = true;
   addToCart(product: any) {
@@ -17,16 +22,7 @@ export class DashboardComponent implements OnInit {
       duration: 700,
       verticalPosition: 'top',
     });
-
-    const cartItems = this.cartService.getCartItems();
-    console.log('Updated Cart Items:', cartItems);
   }
-
-  constructor(
-    private productService: ProductService,
-    private cartService: CartService,
-    private snackBar: MatSnackBar
-  ) {}
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe({

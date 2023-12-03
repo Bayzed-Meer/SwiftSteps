@@ -43,7 +43,14 @@ export class ProductsCreateComponent {
       ],
       category: ['', Validators.required],
       price: ['', Validators.required],
-      description: ['', [Validators.minLength(3), Validators.maxLength(250)]],
+      description: [
+        '',
+        [
+          Validators.minLength(3),
+          Validators.maxLength(250),
+          Validators.required,
+        ],
+      ],
       quantity: ['', Validators.required],
       imageUrl: [''],
       createdDate: ['', [Validators.required]],
