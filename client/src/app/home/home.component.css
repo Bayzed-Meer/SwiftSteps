@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 200px;
+}
+img {
+  height: 700px;
+  width: auto;
+  margin-top: 50px;
+}
+
+.heading {
+  margin-left: 100px;
+}
+.text {
+  font-size: 88px;
+  font-family: "Cuprum", sans-serif;
+  margin: 55px;
+  font-weight: bold;
+}
+button {
+  margin-left: 60px;
+  font-size: 20px;
+  font-family: "Cuprum", sans-serif;
+}

@@ -52,6 +52,11 @@
   font-family: "Cuprum", sans-serif;
   color: red;
 }
+.quantityField {
+  width: 25px;
+  font-family: "Cuprum", sans-serif;
+  text-align: center;
+}
 
 .cart-table {
   width: 100%;
@@ -71,7 +76,6 @@
 
 .cart-table td {
   padding: 6px 12px 0px 12px;
-  text-align: center;
   font-size: 16px;
   font-family: "Cuprum", sans-serif;
 }
@@ -86,7 +90,7 @@ img {
   margin-right: 5px;
 }
 
-.cart-table td .quantity {
+.cart-table td .quantityField {
   margin-right: 5px;
 }
 

@@ -20,8 +20,6 @@
 
 img {
   max-width: 100%;
-  min-width: 400px;
-  min-height: 350px;
   padding: 15px;
   border-radius: 20px;
 }
@@ -29,11 +27,19 @@ img {
 mat-card-title {
   font-family: "Cuprum", sans-serif;
   font-size: 24px;
+  color: rgb(49, 58, 95);
+}
+
+.tag {
+  font-size: 18px;
+  font-family: "Cuprum", sans-serif;
+  color: rgb(49, 58, 95);
 }
 
 mat-card-subtitle {
   font-family: "Cuprum", sans-serif;
   font-size: 18px;
+  color: black;
 }
 
 mat-card-content {

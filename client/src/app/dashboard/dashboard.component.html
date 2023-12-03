@@ -3,10 +3,11 @@
   <div class="card-container">
     <mat-card *ngFor="let product of product" class="card">
       <mat-card-header>
-        <mat-card-title>{{ product.productName }}</mat-card-title>
-        <mat-card-subtitle
-          >{{ product.shortCode }} - ${{ product.price }}</mat-card-subtitle
-        >
+        <mat-card-title
+          >{{ product.productName }} -
+          <span class="tag">{{ product.shortCode }} </span>
+        </mat-card-title>
+        <mat-card-subtitle> ${{ product.price }}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image [src]="product.imageUrl" alt="Product Image" />
       <mat-card-content>

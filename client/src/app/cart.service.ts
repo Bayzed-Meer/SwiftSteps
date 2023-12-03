@@ -38,7 +38,17 @@ export class CartService {
       this.removeItem(item);
     }
   }
-
+  updateQuantity(item: any) {
+    if (item.requestedQuantity >= 1) {
+      this.cartItems.forEach((cartItem) => {
+        if (cartItem._id === item._id) {
+          cartItem.requestedQuantity = item.requestedQuantity;
+        }
+      });
+    } else {
+      this.removeItem(item);
+    }
+  }
   removeItem(item: any) {
     const index = this.cartItems.findIndex(
       (cartItem) => cartItem._id === item._id

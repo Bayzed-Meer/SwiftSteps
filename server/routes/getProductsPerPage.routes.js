@@ -6,8 +6,8 @@ const getProductsPerPage = async (req, res) => {
   try {
     const page = parseInt(req.query.page);
     const pageSize = parseInt(req.query.pageSize);
-    const sortBy = req.query.sortBy || 'createdDate'; // Default sorting by createdDate
-    const isAscending = req.query.isAscending === 'true'; // Convert to boolean
+    const sortBy = req.query.sortBy || 'createdDate';
+    const isAscending = req.query.isAscending === 'true';
 
     const sortDirection = isAscending ? 1 : -1;
     

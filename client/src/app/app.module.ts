@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -22,11 +22,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { ProductsCreateComponent } from './products-create/products-create.component';
 import { ProductsComponent } from './products/products.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +60,7 @@ import { FooterComponent } from './footer/footer.component';
     MatNativeDateModule,
     MatCheckboxModule,
     MatProgressBarModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

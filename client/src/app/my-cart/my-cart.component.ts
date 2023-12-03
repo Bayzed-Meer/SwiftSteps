@@ -35,7 +35,10 @@ export class MyCartComponent {
     this.cartService.decrementQuantity(item);
     this.cartItems = this.cartService.getCartItems();
   }
-
+  updateQuantity(item: any) {
+    this.cartService.updateQuantity(item);
+    this.cartItems = this.cartService.getCartItems();
+  }
   removeItem(item: any) {
     this.cartService.removeItem(item);
     this.cartItems = this.cartService.getCartItems();
@@ -50,7 +53,7 @@ export class MyCartComponent {
 
   openSnackBar(message: string): void {
     const config = {
-      duration: 1000,
+      duration: 700,
       verticalPosition: 'top',
     } as MatSnackBarConfig;
     this.snackBar.open(message, 'Close', config);
@@ -88,7 +91,7 @@ export class MyCartComponent {
         this.openSnackBar('Purchase completed!');
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
-        }, 1000);
+        }, 700);
       }
     } else {
       this.openSnackBar('No items in the cart');

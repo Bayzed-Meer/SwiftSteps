@@ -22,7 +22,13 @@
                 <button class="icon" (click)="incrementQuantity(product)">
                   +
                 </button>
-                <span class="quantity">{{ product.requestedQuantity }}</span>
+                <input
+                  type="text"
+                  class="quantityField"
+                  [(ngModel)]="product.requestedQuantity"
+                  (change)="updateQuantity(product)"
+                />
+
                 <button class="icon" (click)="decrementQuantity(product)">
                   -
                 </button>
