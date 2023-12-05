@@ -3,6 +3,7 @@ const router = express.Router();
 const Product = require('../models/product');
 
 const getProductsPerPage = async (req, res) => {
+  
   try {
     const page = parseInt(req.query.page);
     const pageSize = parseInt(req.query.pageSize);
