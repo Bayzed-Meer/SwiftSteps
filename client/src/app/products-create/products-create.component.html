@@ -38,7 +38,7 @@
 
         <mat-form-field class="full-width">
           <mat-label>Price</mat-label>
-          <input matInput formControlName="price" />
+          <input matInput formControlName="price" type="number" />
           <mat-hint>Must be greater than 0</mat-hint>
           <mat-error *ngIf="productForm.get('price')!.hasError('required')">
             Price is required
