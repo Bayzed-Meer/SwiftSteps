@@ -41,13 +41,18 @@ SwiftSteps is an E-commerce web application developed using the MEAN stack (Mong
 - **Database:** MongoDB
 
 ## Screenshots
-
-![Home](./src/assets/images/home.png)
-![Dashboard](./src/assets/images/dashboard.png)
-![Products](./src/assets/images/product.png)
-![Add Product](./src/assets/images/addProduct.png)
-![Edit Product](./src/assets/images/edit.png)
-![Cart](./src/assets/images/cart.png)
+Home
+![home](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/281579a6-6534-4f70-9680-58ed43ee8a03)
+Dashbaord
+![dashboard](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/b41c1d46-d383-4c39-b27a-902453a78be0)
+Products
+![product](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/6eabc0bc-63c4-4f3f-8f2f-50786872c148)
+Add Product
+![addProduct](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/99099b1b-00f9-4010-a35a-b2ff04a52d5f)
+Update Product
+![edit](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/c9ed6628-e137-487b-9944-28c6248e1ece)
+Cart
+![cart](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/cae9fdf4-0a2a-463d-a227-af940800df28)
 
 ## Installation
 
