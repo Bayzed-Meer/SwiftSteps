@@ -4,12 +4,14 @@ const productSchema = new mongoose.Schema({
   productName: {
     type: String,
     required: true,
+    unique: [true, 'Duplicate name not allowed'],
     minlength: 3,
     maxlength: 50,
   },
   shortCode: {
     type: String,
     required: true,
+    unique: [true, 'Duplicate code not allowed'],
     minlength: 3,
     maxlength: 50,
   },
