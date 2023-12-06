@@ -61,13 +61,20 @@ Cart
 3. Install dependencies:
 
    cd client
+   
    npm install
+   
    cd server
+   
    npm install
 
-4. Usage :
+5. Usage :
+   
    cd backend
+   
    npm start
+   
    cd frontend
+   
    ng serve
-5. Open the application in your browser: http://localhost:4200/
+7. Open the application in your browser: http://localhost:4200/
