@@ -82,11 +82,11 @@ Cart
 
 5. Usage :
    
-   cd backend
+   cd server
    
    npm start
    
-   cd frontend
+   cd client
    
    ng serve
 7. Open the application in your browser: http://localhost:4200/
