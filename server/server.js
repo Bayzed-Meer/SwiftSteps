@@ -2,7 +2,7 @@ const app = require('./app');
 const config = require('./config');
 const mongoose = require('mongoose');
 
-mongoose.connect(config.mongoURI, { });
+mongoose.connect(config.mongoURL, { });
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
 });

@@ -1,3 +1,3 @@
 module.exports = {
-    mongoURI: 'paste-your-own-url',
+    mongoURL: 'paste-your-own-url',
   };
