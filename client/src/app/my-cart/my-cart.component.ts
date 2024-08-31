@@ -81,7 +81,7 @@ export class MyCartComponent {
               console.log('Product deleted from the database');
             });
           } else {
-            this.productService.updateProduct(item).subscribe(() => {
+            this.productService.updateProduct(item, item._id).subscribe(() => {
               console.log('Product updated in the database');
             });
           }

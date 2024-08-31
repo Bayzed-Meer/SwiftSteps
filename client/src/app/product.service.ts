@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:5000';
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   createProduct(productData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/createProduct`, productData);
+    return this.http.post(`${this.baseUrl}/product/createProduct`, productData);
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
+    return this.http.get<Product[]>(`${this.baseUrl}/product/getAllProducts`);
   }
 
   getProductsPerPage(
@@ -30,23 +30,29 @@ export class ProductService {
       .set('sortBy', sortBy)
       .set('isAscending', isAscending.toString());
 
-    return this.http.get<Product[]>(`${this.baseUrl}/getProductsPerPage`, {
-      params,
-    });
+    return this.http.get<Product[]>(
+      `${this.baseUrl}/product/getProductsPerPage`,
+      {
+        params,
+      }
+    );
   }
 
   deleteProduct(productId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/deleteProduct/${productId}`);
+    return this.http.delete<void>(
+      `${this.baseUrl}/product/deleteProduct/${productId}`
+    );
   }
 
   getProductById(productId: string): Observable<Product> {
-    return this.http.get<Product>(`${this.baseUrl}/getProduct/${productId}`);
+    return this.http.get<Product>(
+      `${this.baseUrl}/product/getProduct/${productId}`
+    );
   }
 
-  updateProduct(productData: any): Observable<void> {
-    const productId = productData._id;
+  updateProduct(productData: any, id: string): Observable<void> {
     return this.http.put<void>(
-      `${this.baseUrl}/updateProduct/${productId}`,
+      `${this.baseUrl}/product/updateProduct/${id}`,
       productData
     );
   }

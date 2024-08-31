@@ -11,6 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductsCreateComponent {
   productForm: FormGroup = new FormGroup({});
   maxDate: any;
+  selectedFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -52,16 +53,35 @@ export class ProductsCreateComponent {
         ],
       ],
       quantity: ['', Validators.required],
-      imageUrl: [''],
+      image: [''],
       createdDate: ['', [Validators.required]],
       origin: ['', Validators.required],
     });
   }
 
-  onSubmit() {
-    const formData = this.productForm.value;
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
 
+  onSubmit() {
     if (this.productForm.valid) {
+      const formData = new FormData();
+
+      // Append form fields to FormData
+      for (const key in this.productForm.controls) {
+        if (this.productForm.controls.hasOwnProperty(key)) {
+          const value = this.productForm.get(key)?.value;
+          formData.append(key, value);
+        }
+      }
+
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+      }
+
       this.productService.createProduct(formData).subscribe({
         next: (response) => {
           console.log('Product created successfully', response);

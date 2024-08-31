@@ -11,8 +11,10 @@ import { ProductService } from '../product.service';
 export class EditProductComponent {
   maxDate: any;
   isLoading = true;
+  selectedFile: File | null = null;
+  productId: string = '';
+
   productForm: FormGroup = this.fb.group({
-    _id: [''],
     productName: [
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
@@ -25,7 +27,7 @@ export class EditProductComponent {
     price: ['', Validators.required],
     description: ['', [Validators.minLength(3), Validators.maxLength(250)]],
     quantity: ['', Validators.required],
-    imageUrl: [''],
+    image: [''],
     createdDate: ['', [Validators.required]],
     origin: ['', Validators.required],
   });
@@ -41,14 +43,14 @@ export class EditProductComponent {
     this.maxDate = new Date();
     this.route.params.subscribe({
       next: (params) => {
-        const productId = params['productId'];
-        if (!productId) {
+        this.productId = params['productId'];
+        if (!this.productId) {
           console.error('Product ID is undefined');
           this.isLoading = false;
           return;
         }
 
-        this.productService.getProductById(productId).subscribe({
+        this.productService.getProductById(this.productId).subscribe({
           next: (product) => {
             if (!product) {
               console.error('Product not found');
@@ -73,17 +75,39 @@ export class EditProductComponent {
   }
 
   onSubmit() {
-    const productId = this.productForm!.get('_id')!.value;
-    const formData = this.productForm.value;
-    formData.id = productId;
-    this.productService.updateProduct(formData).subscribe({
-      next: () => {
-        console.log('Product updated successfully');
-        this.router.navigate(['/products']);
-      },
-      error: (error) => {
-        console.error('Error updating product:', error);
-      },
-    });
+    if (this.productForm.valid) {
+      const formData = new FormData();
+
+      // Append form fields to FormData
+      for (const key in this.productForm.controls) {
+        if (this.productForm.controls.hasOwnProperty(key)) {
+          const value = this.productForm.get(key)?.value;
+          formData.append(key, value);
+        }
+      }
+
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+      }
+
+      this.productService.updateProduct(formData, this.productId).subscribe({
+        next: () => {
+          console.log('Product updated successfully');
+          this.router.navigate(['/products']);
+        },
+        error: (error) => {
+          console.error('Error updating product:', error);
+        },
+      });
+    } else {
+      console.error('Form validation failed. Please check the entered data.');
+    }
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 }

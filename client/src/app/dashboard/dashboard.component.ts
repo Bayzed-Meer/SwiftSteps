@@ -16,13 +16,6 @@ export class DashboardComponent implements OnInit {
   ) {}
   product: any;
   isLoading = true;
-  addToCart(product: any) {
-    this.cartService.addToCart(product);
-    this.snackBar.open('Product added to cart', 'Dismiss', {
-      duration: 700,
-      verticalPosition: 'top',
-    });
-  }
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe({
@@ -34,6 +27,14 @@ export class DashboardComponent implements OnInit {
         console.error('Error fetching product details:', error);
         this.isLoading = false;
       },
+    });
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+    this.snackBar.open('Product added to cart', 'Dismiss', {
+      duration: 700,
+      verticalPosition: 'top',
     });
   }
 }

@@ -22,6 +22,7 @@ img {
   max-width: 100%;
   padding: 15px;
   border-radius: 20px;
+  object-fit: contain;
 }
 
 mat-card-title {

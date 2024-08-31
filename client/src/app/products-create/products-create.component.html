@@ -105,10 +105,24 @@
           <mat-hint>Minimum 3 & Maximum 50 Characters</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <mat-label>Image Url</mat-label>
-          <input matInput formControlName="imageUrl" />
-        </mat-form-field>
+        <div>
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            #fileUpload
+            hidden
+          />
+          <button
+            mat-stroked-button
+            type="button"
+            color="primary"
+            (click)="fileUpload.click()"
+          >
+            <mat-icon>add_a_photo</mat-icon>
+            Choose
+          </button>
+        </div>
       </div>
     </form>
   </mat-card>
