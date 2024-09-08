@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SwiftSteps:build:production"
+              "buildTarget": "SwiftSteps:build:production"
             },
             "development": {
-              "browserTarget": "SwiftSteps:build:development"
+              "buildTarget": "SwiftSteps:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SwiftSteps:build"
+            "buildTarget": "SwiftSteps:build"
           }
         },
         "test": {
