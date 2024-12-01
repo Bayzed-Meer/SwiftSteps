@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-SwiftSteps is an E-commerce web application developed using the MEAN stack (MongoDB, Express.js, Angular, and Node.js). The project is designed to provide a user-friendly interface for managing products, handling shopping cart functionality, and facilitating product purchase.
+SwiftSteps is an E-commerce web application designed to provide a user-friendly interface for managing products, handling shopping cart functionality, and facilitating product purchase. The entire project is centered around basic CRUD (Create, Read, Update, Delete) operations, enabling administrators to manage products, categories and orders efficiently.
 
 ## Features
 
@@ -44,27 +44,27 @@ SwiftSteps is an E-commerce web application developed using the MEAN stack (Mong
 
 Home
 
-![home](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/281579a6-6534-4f70-9680-58ed43ee8a03)
+![alt text](client/src/assets/images/home.png)
 
 Dashbaord
 
-![dashboard](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/f8504cec-17d1-41f4-9589-4f8a5af6f6d3)
+![alt text](client/src/assets/images/dashboard.png)
 
 Products
 
-![products](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/7e9f632c-fea9-45e0-a757-2f97eac81eaa)
+![alt text](client/src/assets/images/product.png)
 
 Add Product
 
-![addProduct](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/99099b1b-00f9-4010-a35a-b2ff04a52d5f)
+![alt text](client/src/assets/images/add-product.png)
 
 Update Product
 
-![edit](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/c9ed6628-e137-487b-9944-28c6248e1ece)
+![alt text](client/src/assets/images/edit-product.png)
 
 Cart
 
-![cart](https://github.com/Bayzed-Meer/SwiftSteps/assets/145206930/cae9fdf4-0a2a-463d-a227-af940800df28)
+![alt text](client/src/assets/images/cart.png)
 
 ## Installation
 
@@ -73,20 +73,21 @@ Cart
 3. Install dependencies:
 
    cd client
-   
-   npm install
-   
-   cd server
-   
+
    npm install
 
-5. Usage :
-   
    cd server
-   
+
+   npm install
+
+4. Usage :
+
+   cd server
+
    npm start
-   
+
    cd client
-   
+
    ng serve
-7. Open the application in your browser: http://localhost:4200/
+
+5. Open the application in your browser: http://localhost:4200/

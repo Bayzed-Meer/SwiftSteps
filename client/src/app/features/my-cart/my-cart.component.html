@@ -16,7 +16,9 @@
           </thead>
           <tbody>
             <tr *ngFor="let product of cartItems">
-              <td><img [src]="product.imageUrl" alt="Product Image" /></td>
+              <td>
+                <img [src]="getImage(product.image)" alt="Product Image" />
+              </td>
               <td>{{ product.productName }}</td>
               <td>
                 <button class="icon" (click)="incrementQuantity(product)">
@@ -83,4 +85,3 @@
     </div>
   </div>
 </div>
-

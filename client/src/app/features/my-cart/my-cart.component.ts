@@ -8,18 +8,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 
 @Component({
-    selector: 'app-my-cart',
-    templateUrl: './my-cart.component.html',
-    styleUrls: ['./my-cart.component.css'],
-    standalone: true,
-    imports: [
-        NgIf,
-        NgFor,
-        ReactiveFormsModule,
-        FormsModule,
-        MatButton,
-        DecimalPipe,
-    ],
+  selector: 'app-my-cart',
+  templateUrl: './my-cart.component.html',
+  styleUrls: ['./my-cart.component.css'],
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    ReactiveFormsModule,
+    FormsModule,
+    MatButton,
+    DecimalPipe,
+  ],
 })
 export class MyCartComponent {
   cartItems: any[] = [];
@@ -36,6 +36,7 @@ export class MyCartComponent {
 
   updateCartItems() {
     this.cartItems = this.cartService.getCartItems();
+    console.log(this.cartItems);
   }
 
   incrementQuantity(item: any) {
@@ -108,5 +109,9 @@ export class MyCartComponent {
     } else {
       this.openSnackBar('No items in the cart');
     }
+  }
+
+  getImage(url: any): string {
+    return `https://profilexpert.onrender.com/${url}`;
   }
 }
