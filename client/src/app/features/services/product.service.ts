@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'https://profilexpert.onrender.com/';
+  private baseUrl = 'https://swiftsteps.onrender.com/';
 
   constructor(private http: HttpClient) {}
 

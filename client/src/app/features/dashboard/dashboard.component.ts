@@ -65,6 +65,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getImage(url: any): string {
-    return `https://profilexpert.onrender.com/${url}`;
+    return `https://swiftsteps.onrender.com/${url}`;
   }
 }

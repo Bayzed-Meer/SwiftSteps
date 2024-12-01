@@ -112,6 +112,6 @@ export class MyCartComponent {
   }
 
   getImage(url: any): string {
-    return `https://profilexpert.onrender.com/${url}`;
+    return `https://swiftsteps.onrender.com/${url}`;
   }
 }
