@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-SwiftSteps is an E-commerce web application designed to provide a user-friendly interface for managing products, handling shopping cart functionality, and facilitating product purchase. The entire project is centered around basic CRUD (Create, Read, Update, Delete) operations, enabling administrators to manage products, categories and orders efficiently.
+SwiftSteps is an e-commerce web application designed to streamline CRUD operations for managing products, categories, and orders. It provides a user-friendly interface for administrators to handle product management efficiently while offering shopping cart functionality and a seamless checkout experience for customers.
 
 ## Features
 
